@@ -1,25 +1,21 @@
-<mat-card>
-	<mat-card-actions>
-		 <button mat-fab (click)="thumbUp()">
-		 	<i class="material-icons">thumb_up</i>
-		 	{{ upCount }}
-		 </button>
-		 <button mat-fab (click)="thumbDown()">
-		 	<i class="material-icons">thumb_down</i>
-		 	{{ downCount }}
-		 </button>
-    </mat-card-actions>
-</mat-card>
-<br/>
-<mat-card>
-	<mat-card-actions>
-		 <button mat-fab (click)="thumbUp()">
-		 	<i class="material-icons">thumb_up</i>
-		 	{{ upCount }}
-		 </button>
-		 <button mat-fab (click)="thumbDown()">
-		 	<i class="material-icons">thumb_down</i>
-		 	{{ downCount }}
-		 </button>
-    </mat-card-actions>
-</mat-card>
+<ul class="Items">
+	<li *ngFor="let item of items">
+		<mat-card>
+			<mat-card-actions>
+				 <button mat-fab (click)="thumbUp(item.id)">
+				 	<i class="material-icons"
+				 	[class.voted]="item.hasVotedUp">
+				 	thumb_up</i>
+				 	{{ item.upCount }}
+				 </button>
+				 <button mat-fab (click)="thumbDown(item.id)">
+				 	<i class="material-icons"
+				 	[class.voted]="item.hasVotedDown">
+				 	thumb_down</i>
+				 	{{ item.downCount }}
+				 </button>
+    		</mat-card-actions>
+		</mat-card>
+		<br/>
+	</li>
+</ul>

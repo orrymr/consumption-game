@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Item } from '../item';
+import { ITEMS } from '../mock-items';
 
 import {MatCardModule} from '@angular/material/card';
 
@@ -9,26 +11,27 @@ import {MatCardModule} from '@angular/material/card';
 })
 export class ItemComponent implements OnInit {
 
-  upCount: number = 112;
-  downCount: number = 23;
-  hasVoted: boolean = false;
+  items = ITEMS;
+  foo: number = 2;
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  thumbUp(): void {
-  	if (!this.hasVoted){
-  	  this.upCount = this.upCount + 1;
-  	  this.hasVoted = true;
+  thumbUp(id: number): void {
+    let item = this.items.find(i => i.id === id);
+    if (!item.hasVotedUp && !item.hasVotedDown){
+  	  item.upCount = item.upCount + 1;
+  	  item.hasVotedUp = true;
   	}
   }
 
-  thumbDown(): void {
-  	if (!this.hasVoted){
-  	  this.downCount = this.downCount + 1;
-  	  this.hasVoted = true;
+  thumbDown(id: number): void {
+    let item = this.items.find(i => i.id === id);
+  	if (!item.hasVotedUp && !item.hasVotedDown){
+  	  item.downCount = item.downCount + 1;
+  	  item.hasVotedDown = true;
     }
   }
 

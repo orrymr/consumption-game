@@ -24,7 +24,21 @@ export class ItemComponent implements OnInit {
     if (!item.hasVotedUp && !item.hasVotedDown){
   	  item.upCount = item.upCount + 1;
   	  item.hasVotedUp = true;
+      return;
   	}
+
+    if (item.hasVotedUp) {
+      item.upCount = item.upCount - 1;
+      item.hasVotedUp = false;
+      return;
+    }
+
+    if (item.hasVotedDown) {
+      item.downCount = item.downCount - 1;
+      item.upCount = item.upCount + 1;
+      item.hasVotedDown = false;
+      item.hasVotedUp = true;
+    }
   }
 
   thumbDown(id: number): void {
@@ -32,6 +46,19 @@ export class ItemComponent implements OnInit {
   	if (!item.hasVotedUp && !item.hasVotedDown){
   	  item.downCount = item.downCount + 1;
   	  item.hasVotedDown = true;
+      return;
+    }
+
+    if(item.hasVotedDown) {
+      item.downCount = item.downCount - 1;
+      item.hasVotedDown = false;
+    }
+
+    if (item.hasVotedUp) {
+      item.upCount = item.upCount - 1;
+      item.downCount = item.downCount + 1;
+      item.hasVotedUp = false;
+      item.hasVotedDown = true;
     }
   }
 

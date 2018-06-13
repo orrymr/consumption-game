@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Item } from '../item';
 import { ITEMS } from '../mock-items';
+import { ItemService } from '../item.service';
 
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-item',
@@ -11,12 +12,14 @@ import {MatCardModule} from '@angular/material/card';
 })
 export class ItemsComponent implements OnInit {
 
-  items = ITEMS;
+  items: Item[];
   foo: number = 2;
 
-  constructor() { }
+  constructor(private itemService: ItemService) { }
 
   ngOnInit() {
+    this.getItems();
+    console.log(this.items);
   }
 
   thumbUp(id: number): void {
@@ -60,6 +63,11 @@ export class ItemsComponent implements OnInit {
       item.hasVotedUp = false;
       item.hasVotedDown = true;
     }
+  }
+
+  getItems(): void {
+    this.itemService.getItems()
+      .subscribe(items => this.items = items);
   }
 
 }

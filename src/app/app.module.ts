@@ -4,14 +4,14 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { ItemComponent } from './item/item.component';
+import { ItemsComponent } from './items/items.component';
 import { MaterialModule } from './material.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ItemComponent
+    ItemsComponent
   ],
   imports: [
     BrowserModule,
